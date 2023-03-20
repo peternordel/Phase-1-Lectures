@@ -27,7 +27,7 @@
 //that takes one parameter and returns the squared number of that parameter
 
 
-//Function can take multiple parameters
+//Functions can take multiple parameters
 //Create a function called addNums, that takes two parameters and returns the sum of those two parameters
 
 
