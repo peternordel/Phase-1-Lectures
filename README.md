@@ -14,7 +14,7 @@
 - [ ] Explain the dangers of .innerHTML and when it's safe to use
 - [ ] Remove content with .remove
 
-## Document Object Model
+## Document Object Model (DOM)
 
 The DOM is an interface for web documents. A tree of Node objects that represent a web page. These Nodes allow access and change to the Document.
 
