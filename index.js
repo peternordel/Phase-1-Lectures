@@ -1,9 +1,9 @@
-// Functions consists statements/tasks that return a value or undefined
+// Functions consists of statements/tasks that return a value or undefined
 
 
 
 // Function declaration
-//Create a greeting function that returns
+//Create a greeting function that returns a greeting
 
 
 // Function expression
@@ -19,7 +19,7 @@
 //return only returns the value of the function
 
 
-//Function can take variables called parameters
+//Functions can take variables called parameters
 //When the function is called, it is passed arugments that become the value of the parameter
 
 
