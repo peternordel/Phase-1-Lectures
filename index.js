@@ -1,5 +1,44 @@
 
+// How to select single elements
+// use querySelector("")
+// this will traverse the DOM and return the first element
+// that matches the tag, class, or id
 
+//Select by tag
+
+//Select by class
+
+// log response
+
+// You can also use getElementById
+//Select by id
+
+//log response
+
+
+//How to select multiple elements
+//Select all elements
+
+
+//Select elements by tag name
+
+
+//Select elements by class name
+
+
+//log response
+
+
+//change the text of a div using textContent
+
+//change the text using innerText
+
+//create a new element, and add text to it
+
+
+//change the content of a div using innerHTML
+
+// remove elements using remove() and innerHTML()
 
 
 
@@ -53,3 +92,4 @@ const pokemons = [
 // and use the .remove() method to remove the element from the DOM.
 
 // 6. Define a function `renderPokemon()` that will generate the HTML for each character card
+
