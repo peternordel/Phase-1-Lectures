@@ -2,6 +2,10 @@
 
 ### What we will build today:
 
+<p align="center">
+    <img src="./assets/endgoal.png" width="850" height="450">
+</p>
+
 ## SWBAT
 
 - [ ] Explain what the DOM is
@@ -100,3 +104,20 @@ div.innerHTML = ''
 
 ```
 
+### Deliverables
+
+1. Select the form element with id `poke-form` using the .getElementById() method and store in the variable `pokeForm`. 
+
+2. Select the div element with id `poke-container` using the .querySelector() method and store in the variable `pokeContainer`.
+
+3. Select the label elements with class name `form-label` using the .getElementsByClassName() and store in the variable `labels`.
+
+4. Select all the div elements using the .querySelectorAll() method and store in the variable `allDivs`.
+
+5. Select the div element with id `lecture-goals` and use the .remove() method to remove the element from the DOM.
+
+6. Define a function `renderPokemon()` that will generate the HTML for each character card as seen in the image below:
+
+<p align="center">
+    <img src="./assets/wireframe.png" width="550" height="400">
+</p>
