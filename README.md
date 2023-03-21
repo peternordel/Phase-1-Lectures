@@ -1,6 +1,6 @@
 # DOM Events
 
-## SWBAT
+## SWBAT / Learning Objectives
 
 - [ ] Understand static vs. Dynamic Websites
 - [ ] Review JavaScript event types
@@ -10,6 +10,14 @@
   - [ ] Create new data using a form
   - [ ] Prevent the browser from refreshing with .preventDefault
   - [ ] Render data to the dom with optimistic rendering
+
+## Static vs. Dynamic Websites
+Static website appear the same for every user, and only changes when a developer changes the souce files
+Static websites are usally built with HTML, CSS, and without a database
+Dynamic websites contain interactive, continually changing elements
+Dynamic websites usually use client side and serve side programming languages to create interacitve pages
+
+
 
 ## Events
 
