@@ -1,15 +1,3 @@
-//Review developer tools
-
-//Review objects
-//An object is a collection of data, that contains a list of properties (key value pairs) 
-//in curly brackets
-
-//Define a nested object 
-
-//Demostrate selecting data from the object using brackets
-
-//Create a nested object, iterate and select data
-
 const pokemon = [
   {
     id: 1,
@@ -71,11 +59,40 @@ function renderPokemon(char) {
   const likesBttn = document.createElement("button");
   likesBttn.className = "like-bttn";
   likesBttn.textContent = "♥";
+  likesBttn.addEventListener('click', () => {
+    likesNum.textContent = ++char.likes;
+  })
 
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-bttn";
   deleteBtn.textContent = "Delete";
+  deleteBtn.addEventListener('click', () => pokeCard.remove())
 
   pokeCard.append(pokeImg, pokeName, pokeLikes, likesNum, likesBttn, deleteBtn);
   pokeContainer.appendChild(pokeCard);
+}
+
+pokeForm.addEventListener('submit', submitNewPokemon);
+
+function submitNewPokemon(e) {
+  e.preventDefault();
+  //select name
+  const name = document.querySelector('#name-input').value;
+
+  //select image using selector
+  const image = document.querySelector('#img-input').value;
+
+  //create a new object with the new data
+  const newData = {
+    id: 6,
+    name: name,
+    img: image,
+    likes: 0,
+  }
+
+  //pass the object to the renderPokemon
+  renderPokemon(newData);
+
+  //reset the form
+  pokeForm.reset();
 }
