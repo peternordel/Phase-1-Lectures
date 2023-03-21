@@ -1,47 +1,3 @@
-
-// How to select single elements
-// use querySelector("")
-// this will traverse the DOM and return the first element
-// that matches the tag, class, or id
-
-//Select by tag
-
-//Select by class
-
-// log response
-
-// You can also use getElementById
-//Select by id
-
-//log response
-
-
-//How to select multiple elements
-//Select all elements
-
-
-//Select elements by tag name
-
-
-//Select elements by class name
-
-
-//log response
-
-
-//change the text of a div using textContent
-
-//change the text using innerText
-
-//create a new element, and add text to it
-
-
-//change the content of a div using innerHTML
-
-// remove elements using remove() and innerHTML()
-
-
-
 const pokemons = [
   {
     id: 1,
@@ -77,19 +33,69 @@ const pokemons = [
 
 // 1. Select the form element with id `poke-form` using the .getElementById() method 
 // and store in the variable `pokeForm`. 
-
+const pokeForm = document.getElementById('poke-form');
 
 // 2. Select the div element with id `poke-container` using the .querySelector() method 
 // and store in the variable `pokeContainer`.
+const pokeContainer = document.querySelector('#poke-container');
 
 // 3. Select the label elements with class name `form-label` using the .getElementsByClassName() 
 // and store in the variable `labels`.
+const labels = document.getElementsByClassName('form-label');
 
 // 4. Select all the div elements using the .querySelectorAll() method 
 // and store in the variable `allDivs`.
+const allDivs = document.querySelectorAll('div');
 
 // 5. Select the div element with id `lecture-goals` 
 // and use the .remove() method to remove the element from the DOM.
+document.getElementById('lecture-goals').remove();
 
 // 6. Define a function `renderPokemon()` that will generate the HTML for each character card
 
+//This function uses for in to iterate over the array.
+/*
+function renderPokemon() {
+  for (const key in pokemons) {
+    const pokeCard = document.createElement('div');
+
+    pokeCard.id = `poke-${pokemons[key].id}`;
+    pokeCard.className = 'poke-card';
+
+    const pokeImage = document.createElement('img');
+    pokeImage.src = pokemons[key].img;
+
+    const pokeName = document.createElement('h3');
+    pokeName.textContent = pokemons[key].name;
+
+    const pokeLikes = document.createElement('h3');
+    pokeLikes.textContent = pokemons[key].likes;
+
+    pokeCard.append(pokeImage, pokeName, pokeLikes);
+    pokeContainer.append(pokeCard);
+  }
+}
+*/
+
+//this function uses forEach to iterate over the array.
+function renderPokemon() {
+  pokemons.forEach((poke) => {
+    const pokeCard = document.createElement('div');
+
+    pokeCard.id = `poke-${poke.id}`;
+    pokeCard.className = 'poke-card';
+
+    const pokeImage = document.createElement('img');
+    pokeImage.src = poke.img;
+
+    const pokeName = document.createElement('h3');
+    pokeName.textContent = poke.name;
+
+    const pokeLikes = document.createElement('h3');
+    pokeLikes.textContent = poke.likes;
+
+    pokeCard.append(pokeImage, pokeName, pokeLikes);
+    pokeContainer.append(pokeCard);
+  })
+}
+renderPokemon();
