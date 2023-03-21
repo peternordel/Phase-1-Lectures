@@ -34,6 +34,22 @@ const pokemon = [
 const pokeContainer = document.querySelector("#poke-container");
 const pokeForm = document.querySelector("#poke-form");
 
+pokeForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const name = document.querySelector("#name-input").value;
+  const img = document.querySelector("#img-input").value;
+
+  let newChar = {
+    id: 6, // NEEDS TO CHANGE,
+    name: name,
+    img: img,
+    likes: 0,
+  };
+
+  renderPokemon(newChar);
+  pokeForm.reset();
+});
+
 pokemon.forEach(function (character) {
   renderPokemon(character);
 });
@@ -59,11 +75,20 @@ function renderPokemon(char) {
   const likesBttn = document.createElement("button");
   likesBttn.className = "like-bttn";
   likesBttn.textContent = "♥";
+  likesBttn.addEventListener("click", function () {
+    // increment the characters number of likes
+    ++char.likes;
+    // update the DOM to reflect the new number of likes
+    likesNum.textContent = char.likes;
+  });
 
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-bttn";
   deleteBtn.textContent = "Delete";
+  deleteBttn.addEventListener("click", function () {
+    pokeCard.remove();
+  });
 
-  pokeCard.append(pokeImg, pokeName, pokeLikes, likeNum, likesBttn, deleteBtn);
+  pokeCard.append(pokeImg, pokeName, pokeLikes, likesNum, likesBttn, deleteBtn);
   pokeContainer.appendChild(pokeCard);
 }
