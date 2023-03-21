@@ -64,6 +64,6 @@ function renderPokemon(char) {
   deleteBtn.className = "delete-bttn";
   deleteBtn.textContent = "Delete";
 
-  pokeCard.append(pokeImg, pokeName, pokeLikes, like sNum, likesBttn, deleteBtn);
+  pokeCard.append(pokeImg, pokeName, pokeLikes, likeNum, likesBttn, deleteBtn);
   pokeContainer.appendChild(pokeCard);
 }
