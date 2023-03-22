@@ -55,13 +55,15 @@ function renderPokemon(char) {
   const likesNum = document.createElement("h5");
   likesNum.className = "likes-num";
   likesNum.textContent = char.likes;
-
-  //create the likesBttn
-
-  //create the deleteBtn
   
-  //append buttons to the poke card
+  const likesBttn = document.createElement("button");
+  likesBttn.className = "like-bttn";
+  likesBttn.textContent = "♥";
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-bttn";
+  deleteBtn.textContent = "Delete";
+
   pokeCard.append(pokeImg, pokeName, pokeLikes, likesNum, likesBttn, deleteBtn);
-  //append the card to the div container
   pokeContainer.appendChild(pokeCard);
 }
