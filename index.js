@@ -1,3 +1,16 @@
+//Review developer tools
+
+//Review objects
+//An object is a collection of data, that contains a list of properties (key value pairs) 
+//in curly brackets
+const obj = {};
+
+//Define a nested object 
+
+//Demostrate selecting data from the object using brackets
+
+//Create a nested object, iterate and select data
+
 const pokemon = [
   {
     id: 1,
