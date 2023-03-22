@@ -13,11 +13,12 @@
 
 ## Static vs. Dynamic Websites
 Static website appear the same for every user, and only changes when a developer changes the souce files
+
 Static websites are usally built with HTML, CSS, and without a database
+
 Dynamic websites contain interactive, continually changing elements
+
 Dynamic websites usually use client side and serve side programming languages to create interacitve pages
-
-
 
 ## Events
 

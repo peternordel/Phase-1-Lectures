@@ -1,3 +1,15 @@
+//Review developer tools
+
+//Review objects
+//An object is a collection of data, that contains a list of properties (key value pairs) 
+//in curly brackets
+
+//Define a nested object 
+
+//Demostrate selecting data from the object using brackets
+
+//Create a nested object, iterate and select data
+
 const pokemon = [
   {
     id: 1,
@@ -71,7 +83,7 @@ function renderPokemon(char) {
   const likesNum = document.createElement("h5");
   likesNum.className = "likes-num";
   likesNum.textContent = char.likes;
-
+  
   const likesBttn = document.createElement("button");
   likesBttn.className = "like-bttn";
   likesBttn.textContent = "♥";
