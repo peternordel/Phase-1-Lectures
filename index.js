@@ -56,14 +56,12 @@ function renderPokemon(char) {
   likesNum.className = "likes-num";
   likesNum.textContent = char.likes;
 
-  const likesBttn = document.createElement("button");
-  likesBttn.className = "like-bttn";
-  likesBttn.textContent = "♥";
+  //create the likesBttn
 
-  const deleteBtn = document.createElement("button");
-  deleteBtn.className = "delete-bttn";
-  deleteBtn.textContent = "Delete";
-
+  //create the deleteBtn
+  
+  //append buttons to the poke card
   pokeCard.append(pokeImg, pokeName, pokeLikes, likesNum, likesBttn, deleteBtn);
+  //append the card to the div container
   pokeContainer.appendChild(pokeCard);
 }
