@@ -3,7 +3,6 @@
 //Review objects
 //An object is a collection of data, that contains a list of properties (key value pairs) 
 //in curly brackets
-const obj = {};
 
 //Define a nested object 
 
