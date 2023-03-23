@@ -10,8 +10,12 @@
 ### NOTE: Using JSON Server
 
 - If you have not completed this step yet, install JSON Server by running the following command in the terminal outside of a project: `npm install -g json-server`
-- To start the JSON server, run `json-server --watch db.json --routes routes.json`
+- To start the JSON server, run `json-server --watch db.json`
 - For this project, the following endpoint will be used: `http://localhost:3000/characters`
+- By defualt json-server will run on port 3000, we can always change the post by using the following command:
+`json-server --watch db.json -p 4000`
+- To create a custom route, create a routes.json file in your root directory and run the following command: 
+`json-server --watch db.json --routes routes.json`
 
 ### Deliverables
 
@@ -36,7 +40,7 @@
 What happens when you type a URL into the browser?
 Your browser makes a request to a server, that server sends some response, and your browser parses and process that data.
 
-Think about when you log into a website like Pinterest or Instagram. You are given an interface full of data curated and unique to you. Have you ever wondered why what when you log in is different from what your friends/family see when they log in? This is because clients can be treated like a template populated with data.
+Think about when you log into a website like Pinterest or Instagram. You are given an interface full of data curated and unique to you. Have you ever wondered when you log why everything is different from what your friends/family see when they log in? This is because clients can be treated like a template populated with data.
 
 When you log in, the client will return with the basic template of the web page and make requests for data specific to each user.
 
@@ -49,11 +53,22 @@ In JavaScript, we can achieve this through HTTP requests.
 
 In other words, HTTP is the language used by the client(browser). The server is used to communicate and exchange responses, including data.
 
-### The Request
+<p>
+<img src="./tcp.png">
+</p>
+
+## The Request - Response Cycle
+
+
+HTTP makes a rquest from the client for some information using a URL. The request then goes to a server (another computer) somewhere on the internet. The web server then handles the request and then sends data back to the requesting client. 
+
+<p>
+<img src="./request-response-cycle.png">
+</p>
 
 A request has HTTP methods (also known as HTTP verbs) defining the kind of request, the address of the request, and sometimes data or headers.
 
-HTTP Methods
+### HTTP Methods
 
 GET: requests resources and retrieves data (READ)
 
@@ -64,6 +79,11 @@ PATCH: Updates part of a resource (UPDATE)
 PUT: Updates all of a resource (UPDATE)
 
 DELETE: Deletes a resource (DELETE)
+
+
+<p>
+<img src="./crud.png">
+</p>
 
 ### Fetch & Promise
 

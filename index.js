@@ -137,7 +137,7 @@ pokeForm.addEventListener("submit", function (e) {
   const img = document.querySelector("#img-input").value;
 
   let newChar = {
-    id: 6,
+    id: 6, // Will need to change this if we add more characters
     name: name,
     img: img,
     likes: 0,
