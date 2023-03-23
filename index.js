@@ -15,7 +15,10 @@ function getPokemon(){
 
 
 getPokemon();
-
+//TODO: Refactor this code to be a function
+//create a function that makes a post request
+//this function should make a post request to the endpoint
+//use this function in a submit event listener, when the form is submitted
 pokeForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const name = document.querySelector("#name-input").value;
@@ -32,10 +35,7 @@ pokeForm.addEventListener("submit", function (e) {
   renderPokemon(newChar);
   pokeForm.reset();
 });
-
-pokemon.forEach(function (character) {
-  renderPokemon(character);
-});
+//TODO: create a function called renderComments that takes in a character as an argument, and displays it comments
 
 function showCharacter(character){
   fetch(`http://localhost:3000/characters/${character.id}`)
