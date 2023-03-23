@@ -36,10 +36,10 @@ pokeForm.addEventListener("submit", function (e) {
   pokeForm.reset();
 });
 
-/*pokemon.forEach(function (character) {
-  //renderPokemon(character);
-});*/
-renderPokemon(character);
+pokemon.forEach(function (character) {
+  renderPokemon(character);
+});
+
 
 
 //TODO: Create the showCharacter function
