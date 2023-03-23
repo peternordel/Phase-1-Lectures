@@ -6,6 +6,19 @@ const pokeForm = document.querySelector("#poke-form");
 //Invokes renderPokemon() for each returned character
 //break the problem down into steps
 
+function getPokemon(){
+  fetch("http://localhost:3000/characters")
+  .then(response => response.json())
+  .then(characters => {
+    characters.forEach(function (character) {
+      renderPokemon(character);
+    });
+  });
+}
+
+// call the function
+getPokemon();
+
 pokeForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const name = document.querySelector("#name-input").value;
@@ -13,7 +26,7 @@ pokeForm.addEventListener("submit", function (e) {
 
   //create a new character with the udpated id, name, img, and likes
   let newChar = {
-    id: 6, // Will need to change this if we add more characters
+    id: pokemon.length + 1, //or uuidv4()
     name: name,
     img: img,
     likes: 0,
@@ -23,9 +36,10 @@ pokeForm.addEventListener("submit", function (e) {
   pokeForm.reset();
 });
 
-pokemon.forEach(function (character) {
-  renderPokemon(character);
-});
+/*pokemon.forEach(function (character) {
+  //renderPokemon(character);
+});*/
+renderPokemon(character);
 
 
 //TODO: Create the showCharacter function
@@ -35,12 +49,26 @@ pokemon.forEach(function (character) {
 //Replace `pokeContainer` innerHTML with the matched character only. HINT: use `.replaceChildren()`
 //break the problem down into steps
 
+function showCharacter(character){
+  fetch(`http://localhost:3000/characters/${character.id}`)
+  .then(response => response.json())
+  .then(character => {
+    const pokeCard = renderPokemon(character);
+    pokeCard.id = "poke-show-card";
+    pokeContainer.replaceChildren(pokeCard);
+  });
+}
+
 
 function renderPokemon(char) {
+  //TODO: Create an event listener for the pokeCard div, that invokes the showCharacter function
   const pokeCard = document.createElement("div");
   pokeCard.className = "poke-card";
+  pokeCard.id = `poke-${char.id}`;
+  pokeCard.addEventListener("click", () => {
+    showCharacter(char);
+  })
 
-  //TODO: Create an event listener for the pokeCard div, that invokes the showCharacter function
   const pokeImg = document.createElement("img");
   pokeImg.src = char.img;
   pokeImg.alt = `${char.name} image`;
@@ -58,9 +86,9 @@ function renderPokemon(char) {
   const likesBttn = document.createElement("button");
   likesBttn.className = "like-bttn";
   likesBttn.textContent = "♥";
-  likesBttn.addEventListener("click", function () {
+  likesBttn.addEventListener("click", function (e) {
     //use e.stopPropogation() to stop the event from bubbling up to the parent element
-
+    e.stopPropagation();
     // increment the characters number of likes
     ++char.likes;
     // update the DOM to reflect the new number of likes
@@ -70,11 +98,15 @@ function renderPokemon(char) {
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-bttn";
   deleteBtn.textContent = "Delete";
-  deleteBtn.addEventListener("click", function () {
+  deleteBtn.addEventListener("click", function (e) {
     //use e.stopPropogation() to stop the event from bubbling up to the parent element
+    e.stopPropagation();
     pokeCard.remove();
+  
   });
 
   pokeCard.append(pokeImg, pokeName, pokeLikes, likesNum, likesBttn, deleteBtn);
   pokeContainer.appendChild(pokeCard);
+    //return the pokeCard
+  return pokeCard;
 }
