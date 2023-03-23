@@ -37,10 +37,11 @@ pokemon.forEach(function (character) {
 
 
 function renderPokemon(char) {
+
+  //TODO: Create an event listener for the pokeCard div, that invokes the showCharacter function
   const pokeCard = document.createElement("div");
   pokeCard.className = "poke-card";
 
-  //TODO: Create an event listener for the pokeCard div, that invokes the showCharacter function
   const pokeImg = document.createElement("img");
   pokeImg.src = char.img;
   pokeImg.alt = `${char.name} image`;
@@ -77,4 +78,6 @@ function renderPokemon(char) {
 
   pokeCard.append(pokeImg, pokeName, pokeLikes, likesNum, likesBttn, deleteBtn);
   pokeContainer.appendChild(pokeCard);
+
+  //TODO: first return the pokeCard from this function
 }
