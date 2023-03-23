@@ -1,101 +1,101 @@
-# DOM Events
+# Communicating with the server
 
-## SWBAT / Learning Objectives
+## SWBAT
 
-- [ ] Understand static vs. Dynamic Websites
-- [ ] Review JavaScript event types
-- [ ] Change the dom with events.
-  - [ ] Remove content with a 'click' handler
-  - [ ] Add content with a 'submit' handler
-  - [ ] Create new data using a form
-  - [ ] Prevent the browser from refreshing with .preventDefault
-  - [ ] Render data to the dom with optimistic rendering
+- [ ] Explain the request-response cycle
+- [ ] Define each HTTP verb and their action
+- [ ] Make a GET request using fetch
+- [ ] Handle promises and return promises with .then
 
-## Static vs. Dynamic Websites
-Static website appear the same for every user, and only changes when a developer changes the souce files
+### NOTE: Using JSON Server
 
-Static websites are usally built with HTML, CSS, and without a database
+- If you have not completed this step yet, install JSON Server by running the following command in the terminal outside of a project: `npm install -g json-server`
+- To start the JSON server, run `json-server --watch db.json --routes routes.json`
+- For this project, the following endpoint will be used: `http://localhost:3000/characters`
 
-Dynamic websites contain interactive, continually changing elements
+### Deliverables
 
-Dynamic websites usually use client side and serve side programming languages to create interacitve pages
+#### 1. Create a function `getPokemon()` that:
 
-## Events
+- Makes a 'GET' request to `http://localhost:3000/characters` and receives a response of all the characters
 
-When the user interacts with the dom, it fires events that trigger an effect in our JavaScript code that can do something. Such as updating the dom or adding content to the database.
+- Invokes renderPokemon() for each returned character
 
-To pick up events, our code must 'listen' for the event. addEventListener will do just that. It takes 2 arguments, the first is the event it's listening for, and the second is the code that will run once the event is triggered.
+#### 2. Update `showCharacter()` to:
+
+- Make a 'GET' request for a single pokemon character data via `http://localhost:3000/characters/:id`
+
+- Invoke renderPokemon() for the returned character
+
+- Update the id of the card returned by renderPokemon() to 'poke-show-card'
+
+- Replace `pokeContainer` innerHTML with the matched character only. HINT: use `.replaceChildren()`
+
+## The Web
+
+What happens when you type a URL into the browser?
+Your browser makes a request to a server, that server sends some response, and your browser parses and process that data.
+
+Think about when you log into a website like Pinterest or Instagram. You are given an interface full of data curated and unique to you. Have you ever wondered why what when you log in is different from what your friends/family see when they log in? This is because clients can be treated like a template populated with data.
+
+When you log in, the client will return with the basic template of the web page and make requests for data specific to each user.
+
+In JavaScript, we can achieve this through HTTP requests.
+
+## HTTP
+
+"The Hypertext Transfer Protocol (HTTP) is the foundation of the World Wide Web and is used to load web pages using hypertext links. HTTP is an application layer protocol designed to transfer information between networked devices and runs on top of other layers of the network protocol stack. A typical flow over HTTP involves a client machine making a request to a server, which then sends a response message."
+[ Cloudflare, "What is HTTP?" 2022](https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/)
+
+In other words, HTTP is the language used by the client(browser). The server is used to communicate and exchange responses, including data.
+
+### The Request
+
+A request has HTTP methods (also known as HTTP verbs) defining the kind of request, the address of the request, and sometimes data or headers.
+
+HTTP Methods
+
+GET: requests resources and retrieves data (READ)
+
+POST: sends data to the server (CREATE)
+
+PATCH: Updates part of a resource (UPDATE)
+
+PUT: Updates all of a resource (UPDATE)
+
+DELETE: Deletes a resource (DELETE)
+
+### Fetch & Promise
+
+.fetch() is a method that allows us to create an HTTP request. To Read, CREATE, UPDATE or DELETE resources.
+It returns a promise.
+
+When an asynchronous operation happens, a Promise is an object that represents its completion or failure.
+It has 3 states, pending, fulfilled, and rejected.
+
+.then() is a method called on a promise and returns a promise.
 
 ```
-div.addEventListener('click', () => console.log('hi'))
+// When given a URL fetch, create an HTTP GET request to the server the URL points to. It returns a promise.
+//Once the promise has fulfilled the response from the server is passed to the .then()
+fetch(url)
+.then()
 
-//When events are triggered, the event object is passed to the second argument as an argument to the callback.
-div.addEventListener('click', (e) => console.log(e))
+// The .then takes a callback
+// Within that callback we can parse the response by calling .json() on it.
+// .json() also returns a promise so we can chain a .then onto our original .then that will process the data once the promise from the .json() is fulfilled.
 
-```
-
-There are many event types: [Events](https://developer.mozilla.org/en-US/docs/Web/Events)
-
-## Forms
-
-Forms can have a variety of user inputs a user can interact with.
-The submit event can be used to retrieve the value of those inputs.
-
-When a form submits, it will, by default try to send a request and refresh the page. To prevent that, we need to call e.preventDefault(). Afterwords, the event can be used to grab the form values through the target attribute.
-
-```
-<form>
-    <input type="text" name='favColor'/>
-    <input type="submit" />
-</form>
-
-form.addEventListener('submit',(e)=> {
-    e.preventDefault
-    //Here we are using the name property from the form to target the specific input.
-    console.log(e.target.faveColor.value)
+fetch(url)
+.then(response => {
+    //retrives the data from our response
+    return response.json()
 })
+.then(data => console.log(data))
 
 ```
-
-## Deliverables
-
-### 1. Attach a 'click' event to the `likesBttn` that:
-
-✔️ Increments the character's number of likes by 1
-
-✔️ Updates the DOM to reflect the Pokemon's new number of likes
-
-<p align="center">
-    <img src="./assets/addLike.gif" width="200" height="350">
-</p>
-
-### 2. Attach a 'click' event to the `deleteBttn` that:
-
-✔️ Removes the pokeCard from the DOM
-
-<p align="center">
-    <img src="./assets/delete.gif" width="800" height="500">
-</p>
-
-### 3. Attach a 'submit' event to '#poke-form' that:
-
-✔️ Prevents default form submission behavior (i.e., page refresh)
-
-✔️ Creates a new Pokemon object and renders it to the DOM:
-
-    - Use .querySelector() to select and retrieve the value of '#name-input', setting it as the "name" for the new Pokemon object
-
-    - Use .querySelector() to select and retrieve the value of '#img-input', setting it as the "img" for the new Pokemon object
-
-✔️ Resets pokeForm using .reset()
-
-<p align="center">
-    <img src="./assets/submit.gif" width="800" height="500">
-</p>
 
 ### Resources
 
-- [JS Event Delegation vs. Bubble & Capturing](https://medium.com/@marjuhirsh/event-propagation-event-delegation-7d3db1baf02a)
+- [MDN .replaceChildren()](https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren)
 
-- [Static and Dynamic Websites: What's the Difference?](https://www.mlytics.com/blog/static-and-dynamic-websites-whats-the-difference/)
-
+- [MDN debugger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger)
