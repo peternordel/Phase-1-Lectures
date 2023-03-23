@@ -1,121 +1,40 @@
-# Communicating with the server
+# POST Requests
 
 ## SWBAT
 
-- [ ] Explain the request-response cycle
-- [ ] Define each HTTP verb and their action
-- [ ] Make a GET request using fetch
-- [ ] Handle promises and return promises with .then
+- [ ] Use a form submission to make a POST request and Create data
+- [ ] Understand the request object passed to fetch
+- [ ] Render new Data on the DOM with optimistic rendering
 
 ### NOTE: Using JSON Server
 
-- If you have not completed this step yet, install JSON Server by running the following command in the terminal outside of a project: `npm install -g json-server`
-- To start the JSON server, run `json-server --watch db.json`
-- For this project, the following endpoint will be used: `http://localhost:3000/characters`
-- By defualt json-server will run on port 3000, we can always change the post by using the following command:
-`json-server --watch db.json -p 4000`
-- To create a custom route, create a routes.json file in your root directory and run the following command: 
-`json-server --watch db.json --routes routes.json`
+- To start the JSON server, run `json-server --watch db.json --routes routes.json`
 
 ### Deliverables
 
-#### 1. Create a function `getPokemon()` that:
+1. Create a POST request when the comment form is submitted and render new comment optimistically
 
-- Makes a 'GET' request to `http://localhost:3000/characters` and receives a response of all the characters
+## POST (Create)
 
-- Invokes renderPokemon() for each returned character
+Posts send data to the server. The information is usually sent from a FORM, creating a resource in the database. A POST is typically for creating new data instead of updating data, like PUT or PATCH.
 
-#### 2. Update `showCharacter()` to:
-
-- Make a 'GET' request for a single pokemon character data via `http://localhost:3000/characters/:id`
-
-- Invoke renderPokemon() for the returned character
-
-- Update the id of the card returned by renderPokemon() to 'poke-show-card'
-
-- Replace `pokeContainer` innerHTML with the matched character only. HINT: use `.replaceChildren()`
-
-## The Web
-
-What happens when you type a URL into the browser?
-Your browser makes a request to a server, that server sends some response, and your browser parses and process that data.
-
-Think about when you log into a website like Pinterest or Instagram. You are given an interface full of data curated and unique to you. Have you ever wondered when you log why everything is different from what your friends/family see when they log in? This is because clients can be treated like a template populated with data.
-
-When you log in, the client will return with the basic template of the web page and make requests for data specific to each user.
-
-In JavaScript, we can achieve this through HTTP requests.
-
-## HTTP
-
-"The Hypertext Transfer Protocol (HTTP) is the foundation of the World Wide Web and is used to load web pages using hypertext links. HTTP is an application layer protocol designed to transfer information between networked devices and runs on top of other layers of the network protocol stack. A typical flow over HTTP involves a client machine making a request to a server, which then sends a response message."
-[ Cloudflare, "What is HTTP?" 2022](https://www.cloudflare.com/learning/ddos/glossary/hypertext-transfer-protocol-http/)
-
-In other words, HTTP is the language used by the client(browser). The server is used to communicate and exchange responses, including data.
-
-<p>
-<img src="./tcp.png">
-</p>
-
-## The Request - Response Cycle
-
-
-HTTP makes a rquest from the client for some information using a URL. The request then goes to a server (another computer) somewhere on the internet. The web server then handles the request and then sends data back to the requesting client. 
-
-<p>
-<img src="./request-response-cycle.png">
-</p>
-
-A request has HTTP methods (also known as HTTP verbs) defining the kind of request, the address of the request, and sometimes data or headers.
-
-### HTTP Methods
-
-GET: requests resources and retrieves data (READ)
-
-POST: sends data to the server (CREATE)
-
-PATCH: Updates part of a resource (UPDATE)
-
-PUT: Updates all of a resource (UPDATE)
-
-DELETE: Deletes a resource (DELETE)
-
-
-<p>
-<img src="./crud.png">
-</p>
-
-### Fetch & Promise
-
-.fetch() is a method that allows us to create an HTTP request. To Read, CREATE, UPDATE or DELETE resources.
-It returns a promise.
-
-When an asynchronous operation happens, a Promise is an object that represents its completion or failure.
-It has 3 states, pending, fulfilled, and rejected.
-
-.then() is a method called on a promise and returns a promise.
+A POST requires an additional argument, a request/config object.
 
 ```
-// When given a URL fetch, create an HTTP GET request to the server the URL points to. It returns a promise.
-//Once the promise has fulfilled the response from the server is passed to the .then()
-fetch(url)
-.then()
+// Method: The HTTP method used in this request is POST. Fetch requests are GET by default. Though they can take a request object, it's not necessary. Other requests, such as POST, require the method to identify what type of request it is.
 
-// The .then takes a callback
-// Within that callback we can parse the response by calling .json() on it.
-// .json() also returns a promise so we can chain a .then onto our original .then that will process the data once the promise from the .json() is fulfilled.
+// Headers: An object that contains additional information for the request. The Content-Type indicates the original media type of the data.
 
-fetch(url)
-.then(response => {
-    //retrives the data from our response
-    return response.json()
+// Body: The data from the request. Before the request can be sent the data must be converted to JSON.
+fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body:JSON.stringify(formData)
 })
-.then(data => console.log(data))
-
 ```
 
 ### Resources
 
-- [MDN .replaceChildren()](https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren)
-
-- [MDN debugger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/debugger)
+- [Dataset](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset)

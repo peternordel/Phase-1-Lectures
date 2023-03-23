@@ -1,10 +1,7 @@
 const pokeContainer = document.querySelector("#poke-container");
 const pokeForm = document.querySelector("#poke-form");
 
-//TODO: Create the getPokemon function
-//Makes a 'GET' request to http://localhost:3000/characters and receives a response of all the characters
-//Invokes renderPokemon() for each returned character
-//break the problem down into steps
+
 
 function getPokemon(){
   fetch("http://localhost:3000/characters")
@@ -16,7 +13,7 @@ function getPokemon(){
   });
 }
 
-// call the function
+
 getPokemon();
 
 pokeForm.addEventListener("submit", function (e) {
@@ -40,15 +37,6 @@ pokemon.forEach(function (character) {
   renderPokemon(character);
 });
 
-
-
-//TODO: Create the showCharacter function
-//Make a 'GET' request for a single pokemon character data via `http://localhost:3000/characters/:id`
-//Invoke renderPokemon() for the returned character
-//Update the id of the card returned by renderPokemon() to 'poke-show-card'
-//Replace `pokeContainer` innerHTML with the matched character only. HINT: use `.replaceChildren()`
-//break the problem down into steps
-
 function showCharacter(character){
   fetch(`http://localhost:3000/characters/${character.id}`)
   .then(response => response.json())
@@ -61,7 +49,6 @@ function showCharacter(character){
 
 
 function renderPokemon(char) {
-  //TODO: Create an event listener for the pokeCard div, that invokes the showCharacter function
   const pokeCard = document.createElement("div");
   pokeCard.className = "poke-card";
   pokeCard.id = `poke-${char.id}`;
@@ -102,11 +89,9 @@ function renderPokemon(char) {
     //use e.stopPropogation() to stop the event from bubbling up to the parent element
     e.stopPropagation();
     pokeCard.remove();
-  
   });
 
   pokeCard.append(pokeImg, pokeName, pokeLikes, likesNum, likesBttn, deleteBtn);
   pokeContainer.appendChild(pokeCard);
-    //return the pokeCard
   return pokeCard;
 }
