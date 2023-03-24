@@ -26,7 +26,7 @@ pokeForm.addEventListener("submit", function (e) {
 
   //create a new character with the udpated id, name, img, and likes
   let newChar = {
-    id: pokemon.length + 1, //or uuidv4()
+    id: 6, //will need to change the id to be dynamic
     name: name,
     img: img,
     likes: 0,
@@ -35,7 +35,11 @@ pokeForm.addEventListener("submit", function (e) {
   renderPokemon(newChar);
   pokeForm.reset();
 });
-//TODO: create a function called renderComments that takes in a character as an argument, and displays it comments
+
+//TODO: create a function called displayComments to display the comments for each character
+//when the pokeCard is clicked
+//this function should make a get request to the endpoint
+//use this function in a click event listener, when the pokeCard is clicked
 
 function showCharacter(character){
   fetch(`http://localhost:3000/characters/${character.id}`)
