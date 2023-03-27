@@ -19,27 +19,49 @@ getPokemon();
 //create a function that makes a post request
 //this function should make a post request to the endpoint
 //use this function in a submit event listener, when the form is submitted
-pokeForm.addEventListener("submit", function (e) {
+function createPokemon(e){
   e.preventDefault();
   const name = document.querySelector("#name-input").value;
   const img = document.querySelector("#img-input").value;
 
   //create a new character with the udpated id, name, img, and likes
   let newChar = {
-    id: 6, //will need to change the id to be dynamic
+    id: e.id+1, //will need to change the id to be dynamic
     name: name,
     img: img,
     likes: 0,
   };
 
+  fetch("http://localhost:3000/characters",{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify(newChar)
+  })
+
   renderPokemon(newChar);
   pokeForm.reset();
-});
+}
+pokeForm.addEventListener("submit", createPokemon)
 
 //TODO: create a function called displayComments to display the comments for each character
 //when the pokeCard is clicked
 //this function should make a get request to the endpoint
 //use this function in a click event listener, when the pokeCard is clicked
+
+function displayComments(character){
+  fetch(`http://localhost:3000/comments/${character.id}`)
+  .then(response => response.json())
+  .then(char => {
+    const card = document.querySelector("#poke-show-card")
+    const comments = document.createElement("h4")
+    console.log(char)
+    comments.textContent = char.content;
+    card.appendChild(comments)
+  })
+}
 
 function showCharacter(character){
   fetch(`http://localhost:3000/characters/${character.id}`)
@@ -58,6 +80,7 @@ function renderPokemon(char) {
   pokeCard.id = `poke-${char.id}`;
   pokeCard.addEventListener("click", () => {
     showCharacter(char);
+    displayComments(char)
   })
 
   const pokeImg = document.createElement("img");
